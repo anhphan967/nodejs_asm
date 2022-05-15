@@ -1,0 +1,103 @@
+<%- include ('../includes/head.ejs')%>
+    <%- include ('../includes/navbar.ejs')%>
+        <div class="grid">
+            <div class="referenceStaff__wrapper">
+                <div class="title my-3">
+                    <h3>Danh sách lượt làm</h3>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Ngày</th>
+                            <th scope="col">Giờ bắt đầu</th>
+                            <th scope="col">Giờ kết thúc</th>
+                            <th scope="col">Nơi làm việc</th>
+                            <th scope="col">Giờ làm thêm</th>
+                        </tr>
+                    </thead>
+                    <% staff.workTimes.forEach(workTime=>{%>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <%=workTime.startTime.getDate()%>
+                            </td>
+                            <td>
+                                <%=workTime.startTime.getHours()%>:<%=workTime.startTime.getMinutes()%>h
+                            </td>
+                            <td>
+                                <%=workTime.endTime.getHours()%>:<%=workTime.endTime.getMinutes()%>h
+                            </td>
+                            <td>
+                                <%= workTime.workPlace==='home' ? ' Nhà' : workTime.workPlace==='company' ? ' Công ty'
+                                    : ' Khách Hàng' %>
+                            </td>
+                            <td>
+                                <% const hoursEnd=workTime.endTime.getHours(); const
+                                    hoursStart=workTime.startTime.getHours(); const totalTimeWork=(hoursEnd* 60
+                                    +workTime.endTime.getMinutes()) - (hoursStart*60 + workTime.startTime.getMinutes());
+                                    %>
+                                    <%= totalTimeWork/60 - 8 < 0 ? 0 : (totalTimeWork/60 - 8).toFixed(2) %>
+                            </td>
+                        </tr>
+                    </tbody>
+                        <% } )%>
+                </table>
+                <p >
+                    Tổng số giờ làm lần này <%=lastTimeWorked%>
+                </p>
+            </div>
+            <div >
+                <h3 class="title my-3">Danh sách đăng ký nghỉ phép</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Số Giờ</th>
+                            <th>Lý do</th>
+                        </tr>
+                    </thead>
+                   
+                    <tr>
+                        <%staff.leaveInfoList.forEach(leaveInfo=> {%>
+                            <tbody>
+                                <td>
+                                    <%=leaveInfo.daysLeave%>
+                                </td>
+                                <td>
+                                    <%=leaveInfo.timesLeave%>
+                                </td>
+                                <td>
+                                    <%=leaveInfo.reason%>
+                                </td>
+                            </tbody>
+                        <%})%>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3 class="title my-3">Chi tiết Lương</h3>
+                <form action="/staff/reference" method="POST">
+                    <label for="month">Tháng</label>
+                    <select class="select-month" name="month" id="month">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </form>
+                <p class="referenceStaff__salary">
+                    Lương: <%= salary %>
+                </p>
+            </div>
+        </div>
+        </div>
+        <div class="blank"></div>
+        <%- include ('../includes/end.ejs')%>

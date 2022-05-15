@@ -1,0 +1,57 @@
+<%- include ('../includes/head.ejs')%>
+    <%- include ('../includes/navbar.ejs')%>
+        <div class="card border-secondary  m-4">
+            <form action="/staff/inforStaff/edit" method="POST">
+                <h2 class="card-header title">Thông Tin Nhân Viên</h2>
+                <div class="row">
+                    <div class="col-lg-8 col-12">
+                        <div class="card-body text-dark ">
+                            <div class="card-text">
+                                <p><i class="fas fa-id-card"></i>
+                                    <%=staff._id.toString()%>
+                                </p>
+                            </div>
+                            <div class="card-text">
+                                <p><i class="fas fa-user"></i>
+                                    <%= staff.name %>
+                                </p>
+                            </div>
+                            <div class="card-text">
+                                <p>
+                                    <i class="fas fa-birthday-cake"></i>
+                                    <%= staff.dOB.toLocaleDateString() %>
+                                </p>
+                            </div>
+                            <div class="card-text">
+                                <p>
+                                    <i class="fas fa-coins"></i>
+                                    <%= staff.salaryScale %>
+                                </p>
+                            </div>
+                            <div class="card-text">
+                                <p>
+                                    <i class="fas fa-user-cog"></i>
+                                    <%= staff.department %>
+                                </p>
+                            </div>
+                            <div class="card-text">
+                                <p>
+                                    <i class="fas fa-calendar-times"></i>
+                                    <%= staff.annualLeave %> ngày
+                                </p>
+                            </div>
+                            <div class="card-text">
+                                <i class="fas fa-portrait"></i>
+                                <input type="text" value="<%= staff.image %>" name="image">
+                            </div>
+                        </div>                   
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <img class="img-fluid"src="<%=staff.image %>" alt="avatar">
+                        <button class="btn btn-success" type="submit">Chỉnh Sửa</button>
+                    </div>
+                </div>              
+            </form>
+        </div>
+        </div>
+        <%- include ('../includes/end.ejs')%>

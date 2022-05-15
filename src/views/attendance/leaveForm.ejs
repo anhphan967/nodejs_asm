@@ -1,0 +1,38 @@
+<%- include ('../includes/head.ejs')%>
+    <%- include ('../includes/navbar.ejs')%>
+        <%-include ('../includes/attendanceButton.ejs')%>
+        <div class='row '>                
+            <div class ='col-lg-4 col-12 mx-auto'>               
+                    <div>
+                        <%if (staff.annualLeave==0) { %>
+                            <h2 class="form-leave__title">Bạn Đã Hết Số Ngày Nghỉ:</h2>
+                            <a href="/attendance" class="link-btn">Quay Lại</a>
+                    </div>                
+                <% } else { %>
+                    <form action="/attendance/leaveForm" method="POST">                        
+                        <div class="form-control mt-2 ">
+                            <label class="col-12 py-1" for="daysLeft">Số Ngày Nghỉ Còn Lại:</label>
+                            <input  id="daysLeft" class="input-disabled" type="text" disabled value="<%=staff.annualLeave%>" />
+                        </div>
+                        <div class="form-control mt-2 ">
+                            <label class="col-12 py-1" for="daysLeave">Chọn Ngày Nghỉ:</label>
+                            <input  id="daysLeave" type="text" name="daysLeave" />
+                        </div>
+                        <div class="form-control mt-2">
+                            <label class="col-12 py-1" for="hoursLeave">Số Giờ Nghỉ (Tối Đa 8 Giờ):</label>
+                            <input  id="hoursLeave" type="number"
+                                max="<%= staff.annualLeave <= 1 ? (staff.annualLeave / 8) : 8 %>" name="hoursLeave" />
+                        </div>
+                        <div class="form-control mt-2">
+                            <label class="col-12 py-1" for="reason">Lý Do:</label>
+                            <textarea id="reason" name="reason" ></textarea>
+                        </div>
+                        <hr>
+                        <button class="btn btn-success" type="submit">Gửi</button>
+                    </form>
+                    <%}%>
+                        </div>
+                        </div>
+            </div>
+        </div>
+<%- include ('../includes/end.ejs')%>
