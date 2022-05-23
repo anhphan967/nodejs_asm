@@ -1,0 +1,59 @@
+<%- include ('../includes/head.ejs')%>
+    <%- include ('../includes/navbar.ejs')%>
+        <h3 class="title my-3">Bảng Thông Tin Covid</h3>
+        <div class="row">
+            <div class="col-md-3 col-12 ">
+                <form action="/covidDetail/temperature" method="POST">
+                    <div class="mb-3 row">
+                        <label  class="col-4" for="temperature">Nhiệt độ</label>
+                        <input  class="col-7" id="temperature" name="temperature" step="0.01" type="number">
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-4" for="timeOfTemperature">Giờ Đo </label>
+                        <input class="col-7" id="timeOfTemperature" name="timeOfTemperature" type="time">
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-4" for="dateOfTemperature">Ngày Đo </label>
+                        <input class="col-7" id="dateOfTemperature" name="dateOfTemperature" type="date">
+                    </div>
+                    <button class="btn btn-success mb-3" type="submit">Đăng Ký</button>
+                </form>
+
+            </div>
+            <div class="col-md-5 col-12">
+                <form action="/covidDetail/injection" method="POST">
+                    <div class="mb-3 row">
+                        <label class="col-5" for="nameOfFirstVaccine">Tên vaccine (Mũi 1)</label>
+                        <input class="col-6" id="nameOfFirstVaccine" name="nameOfFirstVaccine" type="text">
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-5" for="dateOfFirstVaccine">Ngày tiêm</label>
+                        <input class="col-6" id="dateOfFirstVaccine" name="dateOfFirstVaccine" type="date">
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-5" for="nameOfSecondVaccine">Tên vaccine (Mũi 2)</label>
+                        <input class="col-6" id="nameOfSecondVaccine" name="nameOfSecondVaccine" type="text">
+                    </div> 
+                    <div class="mb-3 row">
+                        <label class="col-5" for="dateOfSecondVaccine">Ngày tiêm</label>
+                        <input class="col-6" id="dateOfSecondVaccine" name="dateOfSecondVaccine" type="date">
+                    </div>  
+                    <button class="btn btn-success mb-3" type="submit">Đăng Ký</button>
+                </form>
+            </div>
+            <div class="col-md-4 col-12">
+                <form action="/covidDetail/infect" method="POST">
+                    <div class="mb-3 row">
+                        <label class="col-5" for="infectDate">Ngày nhiễm covid</label>
+                        <input class="col-6"  id="infectDate" name="infectDate" type="date">
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-5"  for="recoverDate">Ngày khỏi bệnh</label>
+                        <input class="col-6"  id="recoverDate" name="recoverDate" type="date">
+                    </div>
+                    <button class="btn btn-success" type="submit">Đăng Ký</button>
+                </form>
+            </div>
+        </div>
+        </div>
+        <%- include ('../includes/end.ejs')%>

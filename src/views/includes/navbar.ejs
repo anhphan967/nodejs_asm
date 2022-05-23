@@ -1,0 +1,31 @@
+<div class="black-drop"></div>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">               
+            <a class="navbar__brand" href="/"><img src="/image/brand.svg" alt="Brand"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">          
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link <%= path === '/home' ? 'active' : ''%>"> Trang chủ </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/attendance" class="nav-link <%= path === '/attendance' ? 'active' : ''%>"> Điểm danh</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/staff/infoStaff" class="nav-link <%= path === '/staff/infoStaff' ? 'active' : ''%>">Thông tin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/staff/reference" class="nav-link <%= path === '/staff/reference' ? 'active' : ''%>">Tham khảo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/covidDetail" class="nav-link <%= path === '/covid' ? 'active' : ''%>">Thông tin Covid </a>
+                    </li>
+                </ul>
+            </div>
+        </div>              
+    </nav>
+</header>
+
