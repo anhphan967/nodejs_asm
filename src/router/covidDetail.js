@@ -7,5 +7,5 @@ router.get('/', covidDetailController.getIndex);
 router.post('/temperature', covidDetailController.postTemperature);
 router.post('/injection', covidDetailController.postInjection);
 router.post('/infect', covidDetailController.postInfect);
-
+router.get('/:id', covidDetailController.getPDF);
 module.exports = router;

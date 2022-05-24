@@ -5,6 +5,12 @@
                 <div class="title my-3">
                     <h3>Danh sách lượt làm</h3>
                 </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item "><a class="page-link" href="?rowPerPage=20"> 20 dòng</a></li>
+                      <li class="page-item"><a class="page-link" href="?rowPerPage=40"> 40 dòng</a></li>
+                    </ul>
+                </nav> 
                 <table class="table">
                     <thead>
                         <tr>
@@ -15,7 +21,7 @@
                             <th scope="col">Giờ làm thêm</th>
                         </tr>
                     </thead>
-                    <% staff.workTimes.forEach(workTime=>{%>
+                    <% if(workTimes!==0){workTimes.forEach(workTime=>{%>
                     <tbody>
                         <tr>
                             <td>
@@ -40,11 +46,12 @@
                             </td>
                         </tr>
                     </tbody>
-                        <% } )%>
+                        <% } )}%>
                 </table>
                 <p >
                     Tổng số giờ làm lần này <%=lastTimeWorked%>
                 </p>
+                           
             </div>
             <div >
                 <h3 class="title my-3">Danh sách đăng ký nghỉ phép</h3>
@@ -74,11 +81,13 @@
                     </tr>
                 </table>
             </div>
-            <div>
+            <div class="row">
                 <h3 class="title my-3">Chi tiết Lương</h3>
-                <form action="/staff/reference" method="POST">
-                    <label for="month">Tháng</label>
-                    <select class="select-month" name="month" id="month">
+                <div class="col-md-3 mx-auto my-4 title">
+                    <form class='form-select-month form-control' action="/staff/reference" method="POST">
+                        <label for="month">Tháng</label>
+                        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                        <select class="select-month" name="month" id="month">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -92,10 +101,11 @@
                         <option value="11">11</option>
                         <option value="12">12</option>
                     </select>
+                    <p class="referenceStaff__salary">
+                        Lương: <%= workTimes!==0 ? salary : 'Nhan vien chua cham cong' %>
+                    </p>
                 </form>
-                <p class="referenceStaff__salary">
-                    Lương: <%= salary %>
-                </p>
+            </div>
             </div>
         </div>
         </div>

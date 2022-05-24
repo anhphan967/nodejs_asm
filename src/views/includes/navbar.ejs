@@ -2,7 +2,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">               
-            <a class="navbar__brand" href="/"><img src="/image/brand.svg" alt="Brand"></a>
+            <a class="navbar__brand" href="/"><img src="/images/brand.svg" alt="Brand"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,9 +23,27 @@
                     <li class="nav-item">
                         <a href="/covidDetail" class="nav-link <%= path === '/covid' ? 'active' : ''%>">Thông tin Covid </a>
                     </li>
+                    <% if (account==='admin' ) {%>
+                        <li class="nav-item">
+                            <a href="/manageStaff" class="nav-link ">Manage Staff</a>
+                        </li>
+                        <%} %>  
                 </ul>
-            </div>
+                <% if (!isAuthenticated) { %>
+                    <div class="d-flex <%=path === 'auth/logout' ? 'navbar__auth active' : 'navbar__auth' %>">
+                        <button class="btn btn-outline-dark"><a style="text-decoration: none; color:white" href="auth/login">Đăng nhập</a></button>
+                    </div>
+                    <%} else {%>
+                        <div class="d-flex <%=path === 'auth/logout' ? 'navbar__auth active' : 'navbar__auth' %>">
+                            <form action="/auth/logout" method="POST">
+                                <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                                <button class="btn btn-dark" type="submit">ĐĂNG XUẤT</button>
+                            </form>                         
+                        </div>        
+                    <%}%>
+                </div>
         </div>              
     </nav>
 </header>
-
+           
+   

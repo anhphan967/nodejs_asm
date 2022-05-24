@@ -5,7 +5,7 @@ const Staff = require('../models/staff');
 async function connect() {
     try {
         mongoose.connect(
-            'mongodb+srv://nodejs:batho123@cluster0.p9vcj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+            'mongodb+srv://asm2:batho123@cluster0.jvmuo.mongodb.net/?retryWrites=true&w=majority'
         );
         console.log('Connected to MongoDB');
     } catch (err) {
@@ -13,11 +13,11 @@ async function connect() {
     }
 }
 
-Staff.findOne()
+Staff.find()
     .then((staff) => {
         if (!staff) {
             const newStaff = new Staff({
-                name: 'Phan Anh Tuan',
+                name: 'Nguyen Van a',
                 dOB: new Date(1996, 20, 03),
                 salaryScale: 1.4,
                 startDate: new Date(2020, 01, 01),
@@ -29,6 +29,10 @@ Staff.findOne()
                 bodyTemperature: [],
                 vaccineInfo: [],
                 infectCovidInfo: [],
+                isComfirm: [],
+                userName: 'staff1',
+                password: 'staff',
+                account: 'staff',
             });
             newStaff.save();
         }

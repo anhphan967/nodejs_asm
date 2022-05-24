@@ -2,9 +2,23 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Staff = new Schema({
+    userName: {
+        type: String,
+    },
+    password: {
+        type: {},
+    },
+    account: {
+        type: String,
+    },
     name: {
         type: String,
     },
+    isComfirm:[{
+        comfirmed: { type: Boolean},
+        month:{ type: Number}
+        }
+    ],
     dOB: {
         type: Date,
     },

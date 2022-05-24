@@ -1,0 +1,23 @@
+<%- include ('../includes/head.ejs')%>
+    <%- include ('../includes/navbar.ejs')%>
+        <div class="row">
+            <div class="col-md-4 mx-auto my-4 ">
+                <% if (errorMessage) {%>
+                    <div class="notification">
+                        <span>
+                            <%=errorMessage%>
+                        </span>
+                    </div>
+                    <%}%>
+                    <form class="form-control" action="/auth/login" method="POST">
+                        <label class="form-label" for="userName">Tên đăng nhập</label>
+                        <input class="form-control" id="userName" name="userName" type="text">
+                        <label class="form-label" for="password">Mật khẩu</label>
+                        <input class="form-control" id="password" name="password" type="password">
+                        <button class="btn btn-primary m-2" type="submit">Đăng nhâp</button>
+                        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                    </form>
+                </div>
+        </div>
+        </div>
+        <%- include ('../includes/end.ejs')%>

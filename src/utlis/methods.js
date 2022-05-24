@@ -91,7 +91,7 @@ class Methods {
     };
 
     getSalary = (month, staff) => {
-        const year = 2021;
+        const year = 2022;
         const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
         let overTime = 0;
         let shortTime = 0;

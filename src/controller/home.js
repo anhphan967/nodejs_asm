@@ -4,7 +4,8 @@ getIndex = (req,res) => {
         path: '/home',
         pageTitle:'home',
         isStarted: null,
-        staff: req.staff
+        staff: req.staff,
+        account:req.staff.account
     });
 }
 

@@ -1,7 +1,7 @@
 <%- include ('../includes/head.ejs')%>
     <%- include ('../includes/navbar.ejs')%>
         <div class="card border-secondary  m-4">
-            <form action="/staff/inforStaff/edit" method="POST">
+            <form action="/staff/inforStaff/edit" method="POST" enctype="multipart/form-data">
                 <h2 class="card-header title">Thông Tin Nhân Viên</h2>
                 <div class="row">
                     <div class="col-lg-8 col-12">
@@ -42,12 +42,13 @@
                             </div>
                             <div class="card-text">
                                 <i class="fas fa-portrait"></i>
-                                <input type="text" value="<%= staff.image %>" name="image">
+                                <input  type="file" value="<%= image %>" name="image">
                             </div>
                         </div>                   
                     </div>
                     <div class="col-lg-4 col-12">
-                        <img class="img-fluid"src="<%=staff.image %>" alt="avatar">
+                        <img class="img-fluid"src="<%= image %>" alt="avatar">
+                        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                         <button class="btn btn-success" type="submit">Chỉnh Sửa</button>
                     </div>
                 </div>              

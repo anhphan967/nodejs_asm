@@ -6,16 +6,17 @@
                 <form action="/covidDetail/temperature" method="POST">
                     <div class="mb-3 row">
                         <label  class="col-4" for="temperature">Nhiệt độ</label>
-                        <input  class="col-8" id="temperature" name="temperature" step="0.01" type="number">
+                        <input  class="col-7" id="temperature" name="temperature" step="0.01" type="number">
                     </div>
                     <div class="mb-3 row">
                         <label class="col-4" for="timeOfTemperature">Giờ Đo </label>
-                        <input class="col-8" id="timeOfTemperature" name="timeOfTemperature" type="time">
+                        <input class="col-7" id="timeOfTemperature" name="timeOfTemperature" type="time">
                     </div>
                     <div class="mb-3 row">
                         <label class="col-4" for="dateOfTemperature">Ngày Đo </label>
-                        <input class="col-8" id="dateOfTemperature" name="dateOfTemperature" type="date">
+                        <input class="col-7" id="dateOfTemperature" name="dateOfTemperature" type="date">
                     </div>
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                     <button class="btn btn-success mb-3" type="submit">Đăng Ký</button>
                 </form>
 
@@ -24,20 +25,21 @@
                 <form action="/covidDetail/injection" method="POST">
                     <div class="mb-3 row">
                         <label class="col-5" for="nameOfFirstVaccine">Tên vaccine (Mũi 1)</label>
-                        <input class="col-7" id="nameOfFirstVaccine" name="nameOfFirstVaccine" type="text">
+                        <input class="col-6" id="nameOfFirstVaccine" name="nameOfFirstVaccine" type="text">
                     </div>
                     <div class="mb-3 row">
                         <label class="col-5" for="dateOfFirstVaccine">Ngày tiêm</label>
-                        <input class="col-7" id="dateOfFirstVaccine" name="dateOfFirstVaccine" type="date">
+                        <input class="col-6" id="dateOfFirstVaccine" name="dateOfFirstVaccine" type="date">
                     </div>
                     <div class="mb-3 row">
                         <label class="col-5" for="nameOfSecondVaccine">Tên vaccine (Mũi 2)</label>
-                        <input class="col-7" id="nameOfSecondVaccine" name="nameOfSecondVaccine" type="text">
+                        <input class="col-6" id="nameOfSecondVaccine" name="nameOfSecondVaccine" type="text">
                     </div> 
                     <div class="mb-3 row">
                         <label class="col-5" for="dateOfSecondVaccine">Ngày tiêm</label>
-                        <input class="col-7" id="dateOfSecondVaccine" name="dateOfSecondVaccine" type="date">
-                    </div>  
+                        <input class="col-6" id="dateOfSecondVaccine" name="dateOfSecondVaccine" type="date">
+                    </div>
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                     <button class="btn btn-success mb-3" type="submit">Đăng Ký</button>
                 </form>
             </div>
@@ -45,15 +47,34 @@
                 <form action="/covidDetail/infect" method="POST">
                     <div class="mb-3 row">
                         <label class="col-5" for="infectDate">Ngày nhiễm covid</label>
-                        <input class="col-7"  id="infectDate" name="infectDate" type="date">
+                        <input class="col-6"  id="infectDate" name="infectDate" type="date">
                     </div>
                     <div class="mb-3 row">
                         <label class="col-5"  for="recoverDate">Ngày khỏi bệnh</label>
-                        <input class="col-7"  id="recoverDate" name="recoverDate" type="date">
+                        <input class="col-6"  id="recoverDate" name="recoverDate" type="date">
                     </div>
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                     <button class="btn btn-success" type="submit">Đăng Ký</button>
                 </form>
-            </div>
+            </div>            
         </div>
+        <% if (account==='admin' ) { %> 
+            <h3 class="title my-3">Danh sách thông tin nhân viên</h3>
+            <div class="row">
+                <% staffs.forEach(staff=> {%>
+                    <div class="card col-md-5 col-12 m-2 " >
+                    <div class="card-body ">
+                      <p class="card-text">Tên nhân viên : <%= staff.name%></p>
+                      <p class="card-text">Nhiệt độ : <%= staff.bodyTemperature[0] ? staff.bodyTemperature[0].temperature : '' %></p>
+                      <p class="card-text">Tên vaccine mũi một: <%= staff.vaccineInfo[0] ? staff.vaccineInfo[0].nameVaccine : '' %></p>
+                      <p class="card-text">Ngày tiêm: <%= staff.vaccineInfo[0] ? staff.vaccineInfo[0].date.toLocaleString() : '' %></p>
+                      <p class="card-text">Tên vaccine mũi hai: <%= staff.vaccineInfo[1] ? staff.vaccineInfo[1].nameVaccine : '' %></p>
+                      <p class="card-text">Ngày tiêm: <%= staff.vaccineInfo[1] ? staff.vaccineInfo[1].date.toLocaleString() : ''%></p>
+                      <Button type="button" class="btn btn-info" ><a style='text-decoration:none; color: white' href="/covidDetail/<%=staff._id%>">Xuất Trang PDF</a></Button>                      
+                    </div>
+                </div>
+                <% })%>
+            </div>            
+            <% }%>
         </div>
-        <%- include ('../includes/end.ejs')%>
+            <%- include ('../includes/end.ejs')%>

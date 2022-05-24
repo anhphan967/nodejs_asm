@@ -3,10 +3,10 @@
         <%-include ('../includes/attendanceButton.ejs')%>
         <div class='row '>                
             <div class ='col-lg-4 col-12 mx-auto'>               
-                    <div>
+                    <div >
                         <%if (staff.annualLeave==0) { %>
-                            <h2 class="form-leave__title">Bạn Đã Hết Số Ngày Nghỉ:</h2>
-                            <a href="/attendance" class="link-btn">Quay Lại</a>
+                            <h2>Bạn Đã Hết Số Ngày Nghỉ:</h2>
+                            <a href="/attendance" class="btn btn-dark">Quay Lại</a>
                     </div>                
                 <% } else { %>
                     <form action="/attendance/leaveForm" method="POST">                        
@@ -25,9 +25,10 @@
                         </div>
                         <div class="form-control mt-2">
                             <label class="col-12 py-1" for="reason">Lý Do:</label>
-                            <textarea id="reason" name="reason" ></textarea>
+                            <textarea  class="form-control"id="reason" name="reason" ></textarea>
                         </div>
                         <hr>
+                        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                         <button class="btn btn-success" type="submit">Gửi</button>
                     </form>
                     <%}%>
