@@ -114,6 +114,6 @@ app.use((req, res, next) => {
 // Init router
 router(app);
 
-app.listen(port, () => {
+app.listen(process.env.PORT ||port, () => {
     console.log(`App running at http://localhost:${port}`);
 });
