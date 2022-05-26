@@ -17,8 +17,10 @@ class StaffController {
 
     // POST /staff/edit
     postEditStaff(req, res) {
-        deleteFile(req.staff.image)
-        req.staff.image = req.file.path;
+        deleteFile(req.staff.image)        
+        if(req.file){
+            req.staff.image = req.file.path;
+        }        
         req.staff
             .save()
             .then(() => res.redirect('/staff/infoStaff'))

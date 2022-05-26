@@ -19,12 +19,21 @@ class AttendanceController {
             comfirmed
         });
     }
-    getStartWork(req, res) {
+    getStartWork(req, res) {        
+        const presentMonth = new Date().getMonth();
+        const monthComfirmed = req.staff.isComfirm.filter((item) => {
+            return item.month === presentMonth;
+        });
+        let comfirmed;
+        if (monthComfirmed[0]?.month === presentMonth) {
+            comfirmed = true;
+        }   
         res.render('attendance/startForm', {
             path: '/attendance',
             pageTitle: 'Attendance',
             staff: req.staff,
             isStarted: Methods.CheckIsStarted(req.staff),
+            comfirmed
         });
     }
         // POST /attendance/start
@@ -65,12 +74,21 @@ class AttendanceController {
     }
     // GET /attendance/infoStart
     getInfoStart(req, res) {
+        const presentMonth = new Date().getMonth();
+        const monthComfirmed = req.staff.isComfirm.filter((item) => {
+            return item.month === presentMonth;
+        });
+        let comfirmed;
+        if (monthComfirmed[0]?.month === presentMonth) {
+            comfirmed = true;
+        }  
         res.render('attendance/startInfor', {
             path: '/attendance',
             pageTitle: 'Attendance',
             lastStart: Methods.getLastStart(req.staff),
             isStarted: Methods.CheckIsStarted(req.staff),
             staff: req.staff,
+            comfirmed
         });
     }
 
@@ -91,6 +109,14 @@ class AttendanceController {
     }
     // GET /attendance/endInfo
     getInforEnd(req, res) {
+        const presentMonth = new Date().getMonth();
+        const monthComfirmed = req.staff.isComfirm.filter((item) => {
+            return item.month === presentMonth;
+        });
+        let comfirmed;
+        if (monthComfirmed[0]?.month === presentMonth) {
+            comfirmed = true;
+        }  
         const timeWorked = Methods.timeConvert(Methods.calculateTimeWorked(req.staff));
         res.render('attendance/endInfor', {
             path: '/attendance',
@@ -98,17 +124,27 @@ class AttendanceController {
             timeWorked,
             workedInDay: Methods.calculateTimeWorked(req.staff),
             isStarted: Methods.CheckIsStarted(req.staff),
-            staff: req.staff
+            staff: req.staff,
+            comfirmed
         });
     }
 
     // GET /attendance/annulLeave
     getLeaveForm(req, res) {
+        const presentMonth = new Date().getMonth();
+        const monthComfirmed = req.staff.isComfirm.filter((item) => {
+            return item.month === presentMonth;
+        });
+        let comfirmed;
+        if (monthComfirmed[0]?.month === presentMonth) {
+            comfirmed = true;
+        }  
         res.render('attendance/leaveForm', {
             path: '/attendance',
             pageTitle: 'Attendance',
             staff: req.staff,
-            isStarted: null
+            isStarted: null,
+            comfirmed
         });
     }
 
