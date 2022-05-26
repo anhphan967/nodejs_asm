@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const port = 3001;
+const port = 6996;
 const router = require('./router/index');
 const db = require('./config/db');
 const Staff = require('./models/staff');
@@ -114,6 +114,6 @@ app.use((req, res, next) => {
 // Init router
 router(app);
 
-app.listen(process.env.PORT ||port, () => {
+app.listen(process.env.PORT|| port, () => {
     console.log(`App running at http://localhost:${port}`);
 });
