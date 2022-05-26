@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 
 const port = 6996;
-const router = require('./router/index');
+const router = require('../src/router');
 const db = require('./config/db');
-const Staff = require('./models/staff');
+const Staff = require('../srcmodels/staff');
 const session = require('express-session');
 const csrf = require('csurf');
 const mongodbStore = require('connect-mongodb-session')(session);
