@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 
-const port = 6996;
-const router = require('../src/router');
+const port = 3000;
+const router = require('./router/index');
 const db = require('./config/db');
-const Staff = require('../srcmodels/staff');
+const Staff = require('./models/staff');
 const session = require('express-session');
 const csrf = require('csurf');
 const mongodbStore = require('connect-mongodb-session')(session);
@@ -114,6 +114,6 @@ app.use((req, res, next) => {
 // Init router
 router(app);
 
-app.listen(process.env.PORT|| port, () => {
+app.listen(port, () => {
     console.log(`App running at http://localhost:${port}`);
 });

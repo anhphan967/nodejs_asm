@@ -1,2 +1,2 @@
 # NodeJS-Funnix
-https://funxinodejs.herokuapp.com/
+https://test-funix.herokuapp.com
