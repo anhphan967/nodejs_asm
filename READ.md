@@ -1,2 +1,2 @@
 # NodeJS-Funnix
-https://test-funix.herokuapp.com
+https://tuancdt967-nodejs.herokuapp.com/auth/login
